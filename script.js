@@ -46,7 +46,13 @@ class LofiPlayer {
                 artist: "Celestial Draconis", 
                 src: "audio/lofi4.mp3",
                 media: "images/lofi4.mp4"
-            }
+            },
+            {
+                title: "You are falling in love",
+                artist: "Love & Chill Vibes", 
+                src: "audio/lofi5.mp3",
+                media: "images/lofi5.mp4"
+            },
         ];
         
         // Danh sách media nền
@@ -55,7 +61,7 @@ class LofiPlayer {
             "images/lofi2.mp4", 
             "images/lofi3.mp4",
             "images/lofi4.mp4",
-            "images/lofi5.png"
+            "images/lofi5.mp4"
         ];
         
         // Fallback files
