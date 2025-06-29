@@ -11,18 +11,17 @@ class LofiPlayer {
         this.volumeSlider = document.getElementById('volumeSlider');
         this.songTitle = document.getElementById('songTitle');
         this.songArtist = document.getElementById('songArtist');
-        this.backgroundMedia = document.getElementById('backgroundMedia'); // Đổi ID để hỗ trợ cả video và ảnh
+        this.backgroundMedia = document.getElementById('backgroundMedia');
         
         this.currentSongIndex = 0;
         this.isPlaying = false;
         
-        // Danh sách nhạc
         this.playlist = [
             {
                 title: "Coffee Lofi",
                 artist: "Lofi Kitty",
                 src: "audio/lofi1.mp3",
-                media: "images/lofi1.mp4" // Đổi key từ 'video' thành 'media' để tổng quát hơn
+                media: "images/lofi1.mp4"
             },
             {
                 title: "Rainy Day Vibes", 
@@ -44,16 +43,14 @@ class LofiPlayer {
             }
         ];
         
-        // Danh sách media nền (hỗ trợ .mp4, .jpg, .png, v.v.)
         this.backgroundMediaList = [
             "images/lofi1.mp4",
             "images/lofi2.mp4", 
             "images/lofi3.mp4",
             "images/lofi4.mp4",
-            "images/lofi5.png" // Thêm .png để minh họa
+            "images/lofi5.png"
         ];
         
-        // Fallback files
         this.fallbackPlaylist = [
             {
                 title: "Chill Study Beats",
@@ -64,16 +61,18 @@ class LofiPlayer {
         ];
         
         this.fallbackMedia = [
-            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" // Ảnh trống
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         ];
         
         this.currentMediaIndex = 0;
         this.mediaChangeInterval = null;
+        this.preloadedMedia = new Map(); // Lưu trữ media đã preload
         
         this.init();
     }
     
     async init() {
+        this.preloadMedia(); // Preload media khi khởi tạo
         this.loadSong(this.currentSongIndex);
         this.updateTime();
         this.setupEventListeners();
@@ -84,6 +83,21 @@ class LofiPlayer {
         
         setInterval(() => this.updateTime(), 1000);
         this.attemptAutoplay();
+    }
+    
+    preloadMedia() {
+        this.backgroundMediaList.forEach(src => {
+            if (/\.(jpg|jpeg|png|gif)$/i.test(src)) {
+                const img = new Image();
+                img.src = src;
+                this.preloadedMedia.set(src, img);
+            } else {
+                const video = document.createElement('video');
+                video.src = src;
+                video.preload = 'auto';
+                this.preloadedMedia.set(src, video);
+            }
+        });
     }
     
     async attemptAutoplay() {
@@ -133,6 +147,9 @@ class LofiPlayer {
         
         this.audioPlayer.oncanplaythrough = () => {
             console.log(`Đã load xong: ${song.title}`);
+            if (this.isPlaying) {
+                this.audioPlayer.play().catch(console.error);
+            }
         };
     }
     
@@ -145,10 +162,8 @@ class LofiPlayer {
             this.useFallbackPlaylist();
         } else {
             this.hasTriedAllSongs = nextIndex === 0;
-            setTimeout(() => {
-                this.currentSongIndex = nextIndex;
-                this.loadSong(nextIndex);
-            }, 1000);
+            this.currentSongIndex = nextIndex;
+            this.loadSong(nextIndex);
         }
     }
     
@@ -168,20 +183,21 @@ class LofiPlayer {
         mediaContainer.innerHTML = '';
         
         if (isImage) {
-            // Tạo thẻ <img> cho ảnh
             const img = document.createElement('img');
             img.id = 'backgroundMedia';
             img.src = mediaSrc;
             img.alt = 'Background Media';
             mediaContainer.appendChild(img);
         } else {
-            // Tạo thẻ <video> cho video
-            const video = document.createElement('video');
+            const video = this.preloadedMedia.get(mediaSrc) || document.createElement('video');
             video.id = 'backgroundMedia';
-            video.src = mediaSrc;
+            if (!video.src) {
+                video.src = mediaSrc;
+            }
             video.autoplay = true;
             video.loop = true;
             video.muted = true;
+            video.playsinline = true;
             mediaContainer.appendChild(video);
             
             video.onerror = (e) => {
@@ -277,7 +293,7 @@ class LofiPlayer {
         this.currentSongIndex = (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
         this.loadSong(this.currentSongIndex);
         if (this.isPlaying) {
-            this.audioPlayer.play();
+            this.audioPlayer.play().catch(console.error);
         }
     }
     
@@ -285,9 +301,7 @@ class LofiPlayer {
         this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
         this.loadSong(this.currentSongIndex);
         if (this.isPlaying) {
-            this.audioPlayer.play().catch(() => {
-                setTimeout(() => this.nextSong(), 500);
-            });
+            this.audioPlayer.play().catch(console.error);
         }
     }
     
@@ -350,16 +364,7 @@ class LofiPlayer {
         
         this.mediaChangeInterval = setInterval(() => {
             this.currentMediaIndex = (this.currentMediaIndex + 1) % this.backgroundMediaList.length;
-            const mediaContainer = document.querySelector('.main-video');
-            mediaContainer.style.opacity = '0.5';
-            
-            setTimeout(() => {
-                this.loadMedia(this.backgroundMediaList[this.currentMediaIndex]);
-                setTimeout(() => {
-                    mediaContainer.style.opacity = '1';
-                }, 200);
-            }, 300);
-            
+            this.loadMedia(this.backgroundMediaList[this.currentMediaIndex]);
         }, 900000); // 15 phút
     }
 }

@@ -37,8 +37,8 @@ body {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 600px;
-    height: 337.5px;
+    max-width: 400px;
+    height: 225px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -50,7 +50,6 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: opacity 1s ease-in-out;
     filter: brightness(1.0);
 }
 
@@ -308,7 +307,7 @@ footer {
 }
 
 .footer-content a {
-    color: #dddddd;
+    color: #ff6b6b;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -325,8 +324,8 @@ footer {
     }
 
     .main-video {
-        max-width: 500px;
-        height: 281.25px;
+        max-width: 350px;
+        height: 196.875px;
     }
 
     .time-display {
@@ -413,8 +412,8 @@ footer {
     }
 
     .main-video {
-        max-width: 400px;
-        height: 225px;
+        max-width: 300px;
+        height: 168.75px;
     }
 
     .time-display {
