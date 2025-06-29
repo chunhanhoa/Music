@@ -104,7 +104,6 @@ class LofiPlayer {
         footer.innerHTML = `
             <p>© 2025 - <a href="https://www.instagram.com/c.nhoa/" target="_blank">c.nhoa</a></p>
             <div class="visitor-stats">
-                <span>Hôm nay: ${todayVisits} | Tổng: ${totalVisits}</span>
             </div>
         `;
     }
