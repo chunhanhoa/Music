@@ -1,4 +1,4 @@
-# Lofi Music Player
+# Lofi Music
 
 Bạn có thể truy cập dự án tại đây nè :> [Lofi Music](https://chunhanhoa.github.io/Music/)
 
@@ -8,7 +8,7 @@ Chào mừng bạn đến với **Lofi Music** – nơi âm nhạc lofi gặp g�
 
 ## Mô tả
 
-Lofi Music Player là ứng dụng web tối giản với giao diện đẹp mắt, cho phép bạn thưởng thức những giai điệu lofi chill kèm theo hiển thị thời gian thực và video nền thư giãn. Hoàn hảo cho việc học tập, làm việc hoặc thư giãn.
+Lofi Music là ứng dụng web tối giản với giao diện đẹp mắt, cho phép bạn thưởng thức những giai điệu lofi chill kèm theo hiển thị thời gian thực và video nền thư giãn. Hoàn hảo cho việc học tập, làm việc hoặc thư giãn.
 
 ## Tính năng
 
