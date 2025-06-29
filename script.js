@@ -21,17 +21,17 @@ class LofiPlayer {
         // Thêm hệ thống tracking
         this.visitorTracker = new VisitorTracker();
         
-        // Danh sách nhạc
+       // Danh sách nhạc
         this.playlist = [
             {
-                title: "Coffee Lofi",
-                artist: "Lofi Kitty",
+                title: "You are falling in love",
+                artist: "Love & Chill Vibes", 
                 src: "audio/lofi1.mp3",
                 media: "images/lofi1.mp4"
             },
             {
-                title: "Rainy Day Vibes", 
-                artist: "Study Music",
+                title: "Coffee Lofi",
+                artist: "Lofi Kitty",
                 src: "audio/lofi2.mp3",
                 media: "images/lofi2.mp4"
             },
@@ -42,14 +42,14 @@ class LofiPlayer {
                 media: "images/lofi3.mp4"
             },
             {
-                title: "Fantasy Bard/Tavern Music",
-                artist: "Celestial Draconis", 
+                title: "Rainy Day Vibes", 
+                artist: "Study Music",
                 src: "audio/lofi4.mp3",
                 media: "images/lofi4.mp4"
             },
             {
-                title: "You are falling in love",
-                artist: "Love & Chill Vibes", 
+                title: "Fantasy Bard/Tavern Music",
+                artist: "Celestial Draconis", 
                 src: "audio/lofi5.mp3",
                 media: "images/lofi5.mp4"
             },
