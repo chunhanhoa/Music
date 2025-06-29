@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lofi Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="background-overlay"></div>
+        
+        <!-- Hiển thị thời gian -->
+        <div class="time-display">
+            <div class="current-time" id="currentTime"></div>
+            <div class="current-date" id="currentDate"></div>
+        </div>
+
+        <!-- Video nền chính -->
+        <div class="main-video">
+            <video id="backgroundVideo" muted loop autoplay>
+                <source src="images/lofi1.mp4" type="video/mp4">
+                Video không được hỗ trợ.
+            </video>
+        </div>
+
+        <!-- Music Player -->
+        <div class="music-player">
+            <div class="song-info">
+                <h3 id="songTitle">Chill Lofi</h3>
+                <p id="songArtist">Study & Relax</p>
+            </div>
+            
+            <div class="player-controls">
+                <button id="prevBtn"><i class="fas fa-step-backward"></i></button>
+                <button id="playBtn"><i class="fas fa-play"></i></button>
+                <button id="nextBtn"><i class="fas fa-step-forward"></i></button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="time-info">
+                    <span id="currentTimeMusic">0:00</span>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+            
+            <div class="volume-control">
+                <i class="fas fa-volume-up"></i>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+        </div>
+
+        <!-- Audio element -->
+        <audio id="audioPlayer" preload="metadata"></audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

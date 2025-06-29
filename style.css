@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    z-index: 1;
+}
+
+.main-video {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.main-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 1s ease-in-out;
+    filter: blur(1px) brightness(0.8);
+}
+
+.time-display {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px 40px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    animation: timeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes timeGlow {
+    0% {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.current-time {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: colorShift 4s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(90deg); }
+}
+
+.current-date {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    opacity: 0.9;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.music-player {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    padding: 25px 30px;
+    border-radius: 25px;
+    max-width: 400px;
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.music-player:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.song-info {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.song-info h3 {
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+    margin-bottom: 6px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.song-info p {
+    opacity: 0.8;
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    font-weight: 300;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.player-controls button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#playBtn {
+    background: linear-gradient(45deg, #ff6b6b, #ff5252);
+    padding: 15px;
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+#playBtn:hover {
+    background: linear-gradient(45deg, #ff5252, #ff4444);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.6);
+}
+
+.progress-container {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+.volume-control i {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    opacity: 0.8;
+}
+
+#volumeSlider {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+#volumeSlider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(229, 62, 62, 0.9);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: 25px;
+        padding: 15px;
+    }
+
+    .main-video {
+        max-width: 350px;
+        height: 175px;
+    }
+
+    .time-display {
+        padding: 20px 30px;
+        border-radius: 15px;
+        max-width: 350px;
+    }
+
+    .music-player {
+        max-width: 350px;
+        padding: 20px 25px;
+        border-radius: 20px;
+    }
+
+    .player-controls {
+        gap: 12px;
+    }
+
+    .player-controls button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    #playBtn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .main-video {
+        max-width: 320px;
+        height: 160px;
+    }
+
+    .time-display {
+        padding: 18px 28px;
+        max-width: 320px;
+    }
+
+    .music-player {
+        max-width: 320px;
+        padding: 18px 22px;
+    }
+
+    .player-controls button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .error-message {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .main-video {
+        max-width: 300px;
+        height: 150px;
+    }
+
+    .time-display {
+        max-width: 300px;
+    }
+
+    .music-player {
+        max-width: 300px;
+    }
+}
