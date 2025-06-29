@@ -5,13 +5,13 @@ class LofiPlayer {
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
         this.progress = document.getElementById('progress');
-        this.progressBar = document.querySelector('.progress-bar');
+        this.progressBar = document.querySelector('.progress'); // Chọn .progress
         this.currentTimeMusic = document.getElementById('currentTimeMusic');
         this.totalTime = document.getElementById('totalTime');
         this.volumeSlider = document.getElementById('volumeSlider');
         this.songTitle = document.getElementById('songTitle');
         this.songArtist = document.getElementById('songArtist');
-        this.backgroundMedia = document.getElementById('backgroundMedia'); // Đổi ID để hỗ trợ cả video và ảnh
+        this.backgroundMedia = document.getElementById('backgroundMedia');
         
         this.currentSongIndex = 0;
         this.isPlaying = false;
@@ -22,7 +22,7 @@ class LofiPlayer {
                 title: "Coffee Lofi",
                 artist: "Lofi Kitty",
                 src: "audio/lofi1.mp3",
-                media: "images/lofi1.mp4" // Đổi key từ 'video' thành 'media' để tổng quát hơn
+                media: "images/lofi1.mp4"
             },
             {
                 title: "Rainy Day Vibes", 
@@ -44,13 +44,13 @@ class LofiPlayer {
             }
         ];
         
-        // Danh sách media nền (hỗ trợ .mp4, .jpg, .png, v.v.)
+        // Danh sách media nền
         this.backgroundMediaList = [
             "images/lofi1.mp4",
             "images/lofi2.mp4", 
             "images/lofi3.mp4",
             "images/lofi4.mp4",
-            "images/lofi5.png" // Thêm .png để minh họa
+            "images/lofi5.png"
         ];
         
         // Fallback files
@@ -64,7 +64,7 @@ class LofiPlayer {
         ];
         
         this.fallbackMedia = [
-            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" // Ảnh trống
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         ];
         
         this.currentMediaIndex = 0;
@@ -164,18 +164,15 @@ class LofiPlayer {
         const mediaContainer = document.querySelector('.main-video');
         const isImage = /\.(jpg|jpeg|png|gif)$/i.test(mediaSrc);
         
-        // Xóa nội dung hiện tại
         mediaContainer.innerHTML = '';
         
         if (isImage) {
-            // Tạo thẻ <img> cho ảnh
             const img = document.createElement('img');
             img.id = 'backgroundMedia';
             img.src = mediaSrc;
             img.alt = 'Background Media';
             mediaContainer.appendChild(img);
         } else {
-            // Tạo thẻ <video> cho video
             const video = document.createElement('video');
             video.id = 'backgroundMedia';
             video.src = mediaSrc;
@@ -242,7 +239,7 @@ class LofiPlayer {
         this.playBtn.addEventListener('click', () => this.togglePlay());
         this.prevBtn.addEventListener('click', () => this.previousSong());
         this.nextBtn.addEventListener('click', () => this.nextSong());
-        this.progressBar.addEventListener('click', (e) => this.setProgress(e));
+        this.progress.addEventListener('input', (e) => this.setProgress(e));
         this.volumeSlider.addEventListener('input', () => this.setVolume());
         
         this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
@@ -292,18 +289,17 @@ class LofiPlayer {
     }
     
     setProgress(e) {
-        const width = this.progressBar.clientWidth;
-        const clickX = e.offsetX;
         const duration = this.audioPlayer.duration;
-        
-        this.audioPlayer.currentTime = (clickX / width) * duration;
+        const newTime = (e.target.value / 100) * duration;
+        this.audioPlayer.currentTime = newTime;
+        this.progressBar.style.width = `${e.target.value}%`; // Cập nhật .progress
     }
     
     updateProgress() {
         const { duration, currentTime } = this.audioPlayer;
-        const progressPercent = (currentTime / duration) * 100;
-        
-        this.progress.style.width = `${progressPercent}%`;
+        const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+        this.progress.value = progressPercent;
+        this.progressBar.style.width = `${progressPercent}%`; // Cập nhật .progress
         this.currentTimeMusic.textContent = this.formatTime(currentTime);
     }
     
