@@ -40,7 +40,7 @@ class LofiPlayer {
                 title: "Fantasy Bard/Tavern Music",
                 artist: "Celestial Draconis", 
                 src: "audio/lofi4.mp3",
-                media: "images/lofi4.jpg"
+                media: "images/lofi4.mp4"
             }
         ];
         
@@ -49,7 +49,7 @@ class LofiPlayer {
             "images/lofi1.mp4",
             "images/lofi2.mp4", 
             "images/lofi3.mp4",
-            "images/lofi4.jpg",
+            "images/lofi4.mp4",
             "images/lofi5.png" // Thêm .png để minh họa
         ];
         
