@@ -114,7 +114,7 @@ body {
     max-width: 400px;
     width: 100%;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0,  0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -137,7 +137,7 @@ body {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
--song-info p {
+.song-info p {
     opacity: 0.8;
     font-size: clamp(0.85rem, 3vw, 1rem);
     font-weight: 300;
@@ -285,6 +285,39 @@ body {
     }
 }
 
+footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+}
+
+.footer-content p {
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    font-weight: 300;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.footer-content a {
+    color: #dddddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-content a:hover {
+    color: #ff4444;
+    text-decoration: underline;
+}
+
 @media (max-width: 768px) {
     .container {
         gap: 25px;
@@ -306,6 +339,11 @@ body {
         max-width: 350px;
         padding: 20px 25px;
         border-radius: 20px;
+    }
+
+    footer {
+        max-width: 350px;
+        padding: 12px 18px;
     }
 
     .player-controls {
@@ -346,6 +384,11 @@ body {
         padding: 18px 22px;
     }
 
+    footer {
+        max-width: 320px;
+        padding: 10px 15px;
+    }
+
     .player-controls button {
         width: 40px;
         height: 40px;
@@ -379,6 +422,10 @@ body {
     }
 
     .music-player {
+        max-width: 300px;
+    }
+
+    footer {
         max-width: 300px;
     }
 }

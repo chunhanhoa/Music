@@ -19,7 +19,7 @@
 
         <!-- Video nền chính -->
         <div class="main-video">
-            <video id="backgroundVideo" muted loop autoplay>
+            <video id="backgroundMedia" muted loop autoplay playsinline>
                 <source src="images/lofi1.mp4" type="video/mp4">
                 Video không được hỗ trợ.
             </video>
@@ -54,10 +54,15 @@
             </div>
         </div>
 
-        <!-- Audio element -->
-        <audio id="audioPlayer" preload="metadata"></audio>
+        <!-- Footer ở dưới cùng -->
+        <footer>
+            <div class="footer-content">
+                <p>© 2025 - <a href="https://www.instagram.com/c.nhoa/" target="_blank">c.nhoa</a></p>
+            </div>
+        </footer>
     </div>
 
+    <audio id="audioPlayer" preload="metadata"></audio>
     <script src="script.js"></script>
 </body>
 </html>
