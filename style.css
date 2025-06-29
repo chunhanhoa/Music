@@ -354,6 +354,252 @@ footer:hover {
     text-decoration: underline;
 }
 
+/* Visitor Counter Styles */
+.visitor-counter {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 200px;
+    width: auto;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.visitor-counter:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.visitor-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 300;
+    opacity: 0.85;
+}
+
+.visitor-stats i {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Admin Panel Styles */
+.admin-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.admin-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: white;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 1.4rem;
+    color: #ff6b6b;
+}
+
+.close-admin {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-admin:hover {
+    background: rgba(255, 107, 107, 0.3);
+    transform: scale(1.1);
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-card i {
+    font-size: 1.8rem;
+    color: #4ecdc4;
+}
+
+.stat-card h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.stat-card span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ff6b6b;
+}
+
+.visitor-list h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    color: #4ecdc4;
+}
+
+.visitor-table {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.visitor-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr;
+    gap: 15px;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+}
+
+.visitor-row:last-child {
+    border-bottom: none;
+}
+
+.visitor-info strong {
+    color: #ff6b6b;
+    display: block;
+}
+
+.visitor-info small {
+    opacity: 0.7;
+    font-size: 0.75rem;
+}
+
+.visitor-time {
+    opacity: 0.8;
+}
+
+.visitor-ip {
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-actions button {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.admin-actions button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive cho admin panel */
+@media (max-width: 768px) {
+    .admin-content {
+        margin: 10px;
+        padding: 20px;
+        max-height: 90vh;
+    }
+    
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .visitor-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         gap: 25px;
