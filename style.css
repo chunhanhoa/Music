@@ -341,6 +341,7 @@ footer:hover {
     font-weight: 300;
     opacity: 0.9;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 8px;
 }
 
 .footer-content a {
@@ -354,42 +355,24 @@ footer:hover {
     text-decoration: underline;
 }
 
-/* Visitor Counter Styles */
-.visitor-counter {
-    position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(15px);
-    border-radius: 12px;
-    padding: 8px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    max-width: 200px;
-    width: auto;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-}
-
-.visitor-counter:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
-}
-
-.visitor-stats {
+.footer-content .visitor-stats {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 300;
-    opacity: 0.85;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-top: 5px;
 }
 
-.visitor-stats i {
+.footer-content .visitor-stats i {
     color: #ff6b6b;
-    font-size: 0.8rem;
-    opacity: 0.7;
+    font-size: 0.75rem;
+}
+
+/* Visitor Counter Styles */
+.visitor-counter {
+    display: none;
 }
 
 /* Admin Panel Styles */

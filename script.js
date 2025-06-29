@@ -99,18 +99,14 @@ class LofiPlayer {
         const totalVisits = this.visitorTracker.getTotalVisits();
         const todayVisits = this.visitorTracker.getTodayVisits();
         
-        // Tạo element hiển thị số lượt truy cập
-        const visitorDisplay = document.createElement('div');
-        visitorDisplay.className = 'visitor-counter';
-        visitorDisplay.innerHTML = `
+        // Thêm visitor count vào footer thay vì tạo element riêng
+        const footer = document.querySelector('footer .footer-content');
+        footer.innerHTML = `
+            <p>© 2025 - <a href="https://www.instagram.com/c.nhoa/" target="_blank">c.nhoa</a></p>
             <div class="visitor-stats">
                 <span>Hôm nay: ${todayVisits} | Tổng: ${totalVisits}</span>
             </div>
         `;
-        
-        // Thêm vào container
-        const container = document.querySelector('.container');
-        container.insertBefore(visitorDisplay, container.firstChild.nextSibling);
     }
     
     async attemptAutoplay() {
