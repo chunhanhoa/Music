@@ -53,6 +53,12 @@ class LofiPlayer {
                 src: "audio/lofi5.mp3",
                 media: "images/lofi5.mp4"
             },
+            {
+                title: "Fairy Tail Emotional Music",
+                artist: "ich98", 
+                src: "audio/lofi6.mp3",
+                media: "images/lofi6.mp4"
+            },
         ];
         
         // Danh sách media nền
@@ -61,7 +67,8 @@ class LofiPlayer {
             "images/lofi2.mp4", 
             "images/lofi3.mp4",
             "images/lofi4.mp4",
-            "images/lofi5.mp4"
+            "images/lofi5.mp4",
+            "images/lofi6.mp4"
         ];
         
         // Fallback files
