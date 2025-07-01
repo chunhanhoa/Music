@@ -4,6 +4,7 @@ class LofiPlayer {
         this.playBtn = document.getElementById('playBtn');
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
+        this.playlistBtn = document.getElementById('playlistBtn');
         this.progress = document.getElementById('progress');
         this.progressBar = document.querySelector('.progress'); // Chọn .progress
         this.currentTimeMusic = document.getElementById('currentTimeMusic');
@@ -12,6 +13,9 @@ class LofiPlayer {
         this.songTitle = document.getElementById('songTitle');
         this.songArtist = document.getElementById('songArtist');
         this.backgroundMedia = document.getElementById('backgroundMedia');
+        this.playlistModal = document.getElementById('playlistModal');
+        this.closePlaylist = document.getElementById('closePlaylist');
+        this.playlistList = document.getElementById('playlistList');
         
         this.currentSongIndex = 0;
         this.isPlaying = false;
@@ -21,7 +25,7 @@ class LofiPlayer {
         // Thêm hệ thống tracking
         this.visitorTracker = new VisitorTracker();
         
-       // Danh sách nhạc
+        // Danh sách nhạc
         this.playlist = [
             {
                 title: "You are falling in love",
@@ -281,8 +285,17 @@ class LofiPlayer {
         this.playBtn.addEventListener('click', () => this.togglePlay());
         this.prevBtn.addEventListener('click', () => this.previousSong());
         this.nextBtn.addEventListener('click', () => this.nextSong());
+        this.playlistBtn.addEventListener('click', () => this.showPlaylist());
+        this.closePlaylist.addEventListener('click', () => this.hidePlaylist());
         this.progress.addEventListener('input', (e) => this.setProgress(e));
         this.volumeSlider.addEventListener('input', () => this.setVolume());
+        
+        // Click outside modal to close
+        this.playlistModal.addEventListener('click', (e) => {
+            if (e.target === this.playlistModal) {
+                this.hidePlaylist();
+            }
+        });
         
         this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
         this.audioPlayer.addEventListener('loadedmetadata', () => this.updateDuration());
@@ -298,10 +311,130 @@ class LofiPlayer {
         });
     }
     
-    enableAutoplay() {
-        if (!this.isPlaying) {
-            this.togglePlay();
+    showPlaylist() {
+        this.renderPlaylist();
+        this.playlistModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    hidePlaylist() {
+        this.playlistModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    
+    renderPlaylist() {
+        this.playlistList.innerHTML = this.playlist.map((song, index) => `
+            <div class="playlist-item ${index === this.currentSongIndex ? 'active' : ''}" 
+                 onclick="lofiPlayer.selectSong(${index})">
+                <div class="song-number">${index + 1}</div>
+                <div class="song-details">
+                    <h4>${song.title}</h4>
+                    <p>${song.artist}</p>
+                </div>
+                <div class="song-duration">--:--</div>
+                <i class="fas fa-play play-icon"></i>
+            </div>
+        `).join('');
+        
+        // Load duration cho từng bài hát
+        this.loadSongDurations();
+    }
+    
+    selectSong(index) {
+        if (index !== this.currentSongIndex) {
+            this.currentSongIndex = index;
+            this.loadSong(this.currentSongIndex);
+            if (this.isPlaying) {
+                this.audioPlayer.play().catch(console.error);
+            }
         }
+        this.hidePlaylist();
+    }
+    
+    async loadSongDurations() {
+        // Tạo audio elements tạm để lấy duration
+        this.playlist.forEach(async (song, index) => {
+            try {
+                const tempAudio = new Audio();
+                tempAudio.src = song.src;
+                
+                tempAudio.addEventListener('loadedmetadata', () => {
+                    const durationElement = document.querySelector(
+                        `.playlist-item:nth-child(${index + 1}) .song-duration`
+                    );
+                    if (durationElement) {
+                        durationElement.textContent = this.formatTime(tempAudio.duration);
+                    }
+                });
+                
+                tempAudio.addEventListener('error', () => {
+                    const durationElement = document.querySelector(
+                        `.playlist-item:nth-child(${index + 1}) .song-duration`
+                    );
+                    if (durationElement) {
+                        durationElement.textContent = 'N/A';
+                    }
+                });
+                
+                // Load metadata
+                tempAudio.load();
+            } catch (error) {
+                console.error(`Không thể load duration cho ${song.title}:`, error);
+            }
+        });
+    }
+    
+    // Override nextSong và previousSong để update playlist
+    nextSong() {
+        this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
+        this.loadSong(this.currentSongIndex);
+        if (this.isPlaying) {
+            this.audioPlayer.play().catch(() => {
+                setTimeout(() => this.nextSong(), 500);
+            });
+        }
+        this.updatePlaylistDisplay();
+    }
+    
+    previousSong() {
+        this.currentSongIndex = (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
+        this.loadSong(this.currentSongIndex);
+        if (this.isPlaying) {
+            this.audioPlayer.play();
+        }
+        this.updatePlaylistDisplay();
+    }
+    
+    updatePlaylistDisplay() {
+        // Update active song trong playlist nếu modal đang mở
+        if (this.playlistModal.classList.contains('show')) {
+            const items = this.playlistList.querySelectorAll('.playlist-item');
+            items.forEach((item, index) => {
+                if (index === this.currentSongIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+    }
+    
+    updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('vi-VN', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        const dateString = now.toLocaleDateString('vi-VN', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        document.getElementById('currentTime').textContent = timeString;
+        document.getElementById('currentDate').textContent = dateString;
     }
     
     togglePlay() {
@@ -316,24 +449,6 @@ class LofiPlayer {
             this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
         }
         this.isPlaying = !this.isPlaying;
-    }
-    
-    previousSong() {
-        this.currentSongIndex = (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
-        this.loadSong(this.currentSongIndex);
-        if (this.isPlaying) {
-            this.audioPlayer.play();
-        }
-    }
-    
-    nextSong() {
-        this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
-        this.loadSong(this.currentSongIndex);
-        if (this.isPlaying) {
-            this.audioPlayer.play().catch(() => {
-                setTimeout(() => this.nextSong(), 500);
-            });
-        }
     }
     
     setProgress(e) {
@@ -378,6 +493,17 @@ class LofiPlayer {
                 break;
             case 'ArrowRight':
                 this.nextSong();
+                break;
+            case 'KeyP':
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    this.showPlaylist();
+                }
+                break;
+            case 'Escape':
+                if (this.playlistModal.classList.contains('show')) {
+                    this.hidePlaylist();
+                }
                 break;
         }
     }
@@ -606,3 +732,10 @@ class VisitorTracker {
         ).length;
     }
 }
+
+// Tạo biến global để có thể gọi từ HTML
+let lofiPlayer;
+
+document.addEventListener('DOMContentLoaded', () => {
+    lofiPlayer = new LofiPlayer();
+});
