@@ -59,6 +59,12 @@ class LofiPlayer {
                 src: "audio/lofi6.mp3",
                 media: "images/lofi6.mp4"
             },
+            {
+                title: "Камин",
+                artist: "EMIN feat. JONY", 
+                src: "audio/lofi7.mp3",
+                media: "images/lofi7.mp4"
+            },
         ];
         
         // Danh sách media nền
@@ -68,7 +74,8 @@ class LofiPlayer {
             "images/lofi3.mp4",
             "images/lofi4.mp4",
             "images/lofi5.mp4",
-            "images/lofi6.mp4"
+            "images/lofi6.mp4",
+            "images/lofi7.mp4"
         ];
         
         // Fallback files

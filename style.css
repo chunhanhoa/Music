@@ -38,7 +38,7 @@ body {
     z-index: 2;
     width: 100%;
     max-width: 400px;
-    height: 200px;
+    height: 280px; /* Tăng từ 200px lên 280px */
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -927,7 +927,7 @@ footer:hover {
 
     .main-video {
         max-width: 350px;
-        height: 175px;
+        height: 245px; /* Tăng từ 175px lên 245px */
     }
 
     .time-display {
@@ -972,7 +972,7 @@ footer:hover {
 
     .main-video {
         max-width: 320px;
-        height: 160px;
+        height: 224px; /* Tăng từ 160px lên 224px */
     }
 
     .time-display {
@@ -1015,7 +1015,7 @@ footer:hover {
 
     .main-video {
         max-width: 300px;
-        height: 150px;
+        height: 210px; /* Tăng từ 150px lên 210px */
     }
 
     .time-display {
