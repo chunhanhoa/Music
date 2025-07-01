@@ -60,10 +60,10 @@ class LofiPlayer {
                 media: "images/lofi6.mp4"
             },
             {
-                title: "Камин",
-                artist: "EMIN feat. JONY", 
+                title: "Korean RnB",
+                artist: "Seoul Flow AI", 
                 src: "audio/lofi7.mp3",
-                media: "images/lofi7.mp4"
+                media: "images/lofi7.gif"
             },
         ];
         
@@ -75,7 +75,7 @@ class LofiPlayer {
             "images/lofi4.mp4",
             "images/lofi5.mp4",
             "images/lofi6.mp4",
-            "images/lofi7.mp4"
+            "images/lofi7.gif"
         ];
         
         // Fallback files
