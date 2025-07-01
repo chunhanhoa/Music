@@ -4,19 +4,24 @@ class LofiPlayer {
         this.playBtn = document.getElementById('playBtn');
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
+        this.playlistBtn = document.getElementById('playlistBtn');
         this.progress = document.getElementById('progress');
-        this.progressBar = document.querySelector('.progress'); // Chọn .progress
+        this.progressBar = document.querySelector('.progress');
         this.currentTimeMusic = document.getElementById('currentTimeMusic');
         this.totalTime = document.getElementById('totalTime');
         this.volumeSlider = document.getElementById('volumeSlider');
         this.songTitle = document.getElementById('songTitle');
         this.songArtist = document.getElementById('songArtist');
         this.backgroundMedia = document.getElementById('backgroundMedia');
+        this.playlistModal = document.getElementById('playlistModal');
+        this.closePlaylist = document.getElementById('closePlaylist');
+        this.playlistList = document.getElementById('playlistList');
         
         this.currentSongIndex = 0;
         this.isPlaying = false;
         this.isDragging = false;
         this.progressThumb = null;
+        this.isChangingSong = false;
         
         // Thêm hệ thống tracking
         this.visitorTracker = new VisitorTracker();
@@ -106,6 +111,7 @@ class LofiPlayer {
         this.loadSong(this.currentSongIndex);
         this.updateTime();
         this.setupEventListeners();
+        this.createPlaylist();
         this.startMediaRotation();
         
         this.audioPlayer.volume = 0.5;
@@ -154,18 +160,137 @@ class LofiPlayer {
         }, 50);
     }
     
-    loadSong(index) {
+    setupEventListeners() {
+        this.playBtn.addEventListener('click', () => this.togglePlay());
+        this.prevBtn.addEventListener('click', () => this.previousSong());
+        this.nextBtn.addEventListener('click', () => this.nextSong());
+        this.playlistBtn.addEventListener('click', () => this.showPlaylist());
+        this.closePlaylist.addEventListener('click', () => this.hidePlaylist());
+        this.progress.addEventListener('input', (e) => this.setProgress(e));
+        this.volumeSlider.addEventListener('input', () => this.setVolume());
+        
+        this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
+        this.audioPlayer.addEventListener('loadedmetadata', () => this.updateDuration());
+        this.audioPlayer.addEventListener('ended', () => this.nextSong());
+        
+        // Close playlist when clicking outside
+        this.playlistModal.addEventListener('click', (e) => {
+            if (e.target === this.playlistModal) {
+                this.hidePlaylist();
+            }
+        });
+        
+        document.addEventListener('click', this.enableAutoplay.bind(this), { once: true });
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                this.showAdminPanel();
+            }
+            this.handleKeyboard(e);
+        });
+    }
+    
+    createPlaylist() {
+        this.playlistList.innerHTML = '';
+        this.playlist.forEach((song, index) => {
+            const playlistItem = document.createElement('div');
+            playlistItem.className = 'playlist-item';
+            playlistItem.innerHTML = `
+                <div class="playlist-number">${index + 1}</div>
+                <div class="playlist-info">
+                    <h4>${song.title}</h4>
+                    <p>${song.artist}</p>
+                </div>
+                <div class="playlist-duration">--:--</div>
+                ${index === this.currentSongIndex ? '<i class="fas fa-music now-playing-icon"></i>' : ''}
+            `;
+            
+            playlistItem.addEventListener('click', () => {
+                this.selectSong(index);
+            });
+            
+            this.playlistList.appendChild(playlistItem);
+        });
+        
+        this.updatePlaylistHighlight();
+    }
+    
+    updatePlaylistHighlight() {
+        const items = this.playlistList.querySelectorAll('.playlist-item');
+        items.forEach((item, index) => {
+            if (index === this.currentSongIndex) {
+                item.classList.add('active');
+                item.innerHTML = item.innerHTML.replace(
+                    '<i class="fas fa-music now-playing-icon"></i>',
+                    ''
+                ) + '<i class="fas fa-music now-playing-icon"></i>';
+            } else {
+                item.classList.remove('active');
+                item.innerHTML = item.innerHTML.replace(
+                    '<i class="fas fa-music now-playing-icon"></i>',
+                    ''
+                );
+            }
+        });
+    }
+    
+    showPlaylist() {
+        this.playlistModal.classList.add('show');
+        this.updatePlaylistHighlight();
+    }
+    
+    hidePlaylist() {
+        this.playlistModal.classList.remove('show');
+    }
+    
+    selectSong(index) {
+        if (index === this.currentSongIndex && this.isPlaying) {
+            this.hidePlaylist();
+            return;
+        }
+        
+        this.currentSongIndex = index;
+        this.loadSong(this.currentSongIndex, true);
+        this.updatePlaylistHighlight();
+        
+        setTimeout(() => {
+            this.hidePlaylist();
+        }, 300);
+    }
+    
+    loadSong(index, withTransition = false) {
+        if (this.isChangingSong) return;
+        this.isChangingSong = true;
+        
         const song = this.playlist[index];
+        
+        if (withTransition) {
+            // Bắt đầu hiệu ứng chuyển bài
+            this.startSongTransition();
+        }
         
         this.audioPlayer.pause();
         this.audioPlayer.currentTime = 0;
         
         this.audioPlayer.src = song.src;
-        this.songTitle.textContent = song.title;
-        this.songArtist.textContent = song.artist;
+        
+        // Cập nhật thông tin bài hát với hiệu ứng
+        if (withTransition) {
+            const songInfo = document.querySelector('.song-info');
+            songInfo.classList.add('changing');
+            
+            setTimeout(() => {
+                this.songTitle.textContent = song.title;
+                this.songArtist.textContent = song.artist;
+                songInfo.classList.remove('changing');
+            }, 200);
+        } else {
+            this.songTitle.textContent = song.title;
+            this.songArtist.textContent = song.artist;
+        }
         
         if (song.media) {
-            this.loadMedia(song.media);
+            this.loadMedia(song.media, withTransition);
         }
         
         this.audioPlayer.onerror = (e) => {
@@ -175,7 +300,77 @@ class LofiPlayer {
         
         this.audioPlayer.oncanplaythrough = () => {
             console.log(`Đã load xong: ${song.title}`);
+            this.isChangingSong = false;
+            
+            if (this.isPlaying) {
+                this.audioPlayer.play();
+            }
         };
+    }
+    
+    startSongTransition() {
+        const mainVideo = document.querySelector('.main-video');
+        mainVideo.classList.add('changing');
+        
+        setTimeout(() => {
+            mainVideo.classList.remove('changing');
+        }, 500);
+    }
+    
+    loadMedia(mediaSrc, withTransition = false) {
+        const mediaContainer = document.querySelector('.main-video');
+        const isImage = /\.(jpg|jpeg|png|gif)$/i.test(mediaSrc);
+        
+        if (withTransition) {
+            mediaContainer.style.opacity = '0.3';
+            mediaContainer.style.transform = 'scale(0.95)';
+        }
+        
+        setTimeout(() => {
+            mediaContainer.innerHTML = '';
+            
+            if (isImage) {
+                const img = document.createElement('img');
+                img.id = 'backgroundMedia';
+                img.src = mediaSrc;
+                img.alt = 'Background Media';
+                img.onload = () => {
+                    if (withTransition) {
+                        setTimeout(() => {
+                            mediaContainer.style.opacity = '1';
+                            mediaContainer.style.transform = 'scale(1)';
+                        }, 100);
+                    }
+                };
+                mediaContainer.appendChild(img);
+            } else {
+                const video = document.createElement('video');
+                video.id = 'backgroundMedia';
+                video.src = mediaSrc;
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                
+                video.oncanplaythrough = () => {
+                    console.log(`Đã load xong media: ${mediaSrc}`);
+                    video.play().catch(console.error);
+                    
+                    if (withTransition) {
+                        setTimeout(() => {
+                            mediaContainer.style.opacity = '1';
+                            mediaContainer.style.transform = 'scale(1)';
+                        }, 100);
+                    }
+                };
+                
+                video.onerror = (e) => {
+                    console.error(`Lỗi khi load media: ${mediaSrc}`, e);
+                    this.handleMediaError();
+                };
+                
+                mediaContainer.appendChild(video);
+            }
+        }, withTransition ? 200 : 0);
     }
     
     handleAudioError(currentIndex) {
@@ -200,39 +395,6 @@ class LofiPlayer {
         this.songTitle.textContent = "Không tìm thấy file nhạc";
         this.songArtist.textContent = "Hãy kiểm tra thư mục audio/";
         this.showError("Không tìm thấy file nhạc. Hãy thêm file .mp3 vào thư mục audio/");
-    }
-    
-    loadMedia(mediaSrc) {
-        const mediaContainer = document.querySelector('.main-video');
-        const isImage = /\.(jpg|jpeg|png|gif)$/i.test(mediaSrc);
-        
-        mediaContainer.innerHTML = '';
-        
-        if (isImage) {
-            const img = document.createElement('img');
-            img.id = 'backgroundMedia';
-            img.src = mediaSrc;
-            img.alt = 'Background Media';
-            mediaContainer.appendChild(img);
-        } else {
-            const video = document.createElement('video');
-            video.id = 'backgroundMedia';
-            video.src = mediaSrc;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            mediaContainer.appendChild(video);
-            
-            video.onerror = (e) => {
-                console.error(`Lỗi khi load media: ${mediaSrc}`, e);
-                this.handleMediaError();
-            };
-            
-            video.oncanplaythrough = () => {
-                console.log(`Đã load xong media: ${mediaSrc}`);
-                video.play().catch(console.error);
-            };
-        }
     }
     
     handleMediaError() {
@@ -277,27 +439,6 @@ class LofiPlayer {
         document.getElementById('currentDate').textContent = dateString;
     }
     
-    setupEventListeners() {
-        this.playBtn.addEventListener('click', () => this.togglePlay());
-        this.prevBtn.addEventListener('click', () => this.previousSong());
-        this.nextBtn.addEventListener('click', () => this.nextSong());
-        this.progress.addEventListener('input', (e) => this.setProgress(e));
-        this.volumeSlider.addEventListener('input', () => this.setVolume());
-        
-        this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
-        this.audioPlayer.addEventListener('loadedmetadata', () => this.updateDuration());
-        this.audioPlayer.addEventListener('ended', () => this.nextSong());
-        
-        document.addEventListener('click', this.enableAutoplay.bind(this), { once: true });
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-                e.preventDefault();
-                this.showAdminPanel();
-            }
-            this.handleKeyboard(e);
-        });
-    }
-    
     enableAutoplay() {
         if (!this.isPlaying) {
             this.togglePlay();
@@ -320,7 +461,8 @@ class LofiPlayer {
     
     previousSong() {
         this.currentSongIndex = (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
-        this.loadSong(this.currentSongIndex);
+        this.loadSong(this.currentSongIndex, true);
+        this.updatePlaylistHighlight();
         if (this.isPlaying) {
             this.audioPlayer.play();
         }
@@ -328,7 +470,8 @@ class LofiPlayer {
     
     nextSong() {
         this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
-        this.loadSong(this.currentSongIndex);
+        this.loadSong(this.currentSongIndex, true);
+        this.updatePlaylistHighlight();
         if (this.isPlaying) {
             this.audioPlayer.play().catch(() => {
                 setTimeout(() => this.nextSong(), 500);
