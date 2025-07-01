@@ -481,7 +481,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px; /* Giảm từ 20px xuống 15px */
     margin-bottom: 20px;
 }
 
@@ -489,15 +489,15 @@ body {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Giảm từ 1.2rem xuống 1rem */
     cursor: pointer;
-    padding: 10px;
+    padding: 8px; /* Giảm từ 10px xuống 8px */
     border-radius: 50%;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 45px;
-    height: 45px;
+    width: 38px; /* Giảm từ 45px xuống 38px */
+    height: 38px; /* Giảm từ 45px xuống 38px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -511,10 +511,10 @@ body {
 
 #playBtn {
     background: linear-gradient(45deg, #ff6b6b, #ff5252);
-    padding: 15px;
-    font-size: 1.5rem;
-    width: 60px;
-    height: 60px;
+    padding: 12px; /* Giảm từ 15px xuống 12px */
+    font-size: 1.3rem; /* Giảm từ 1.5rem xuống 1.3rem */
+    width: 50px; /* Giảm từ 60px xuống 50px */
+    height: 50px; /* Giảm từ 60px xuống 50px */
     box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
 }
 
@@ -529,9 +529,9 @@ body {
 
 #progress {
     width: 100%;
-    height: 8px;
+    height: 6px; /* Giảm từ 8px xuống 6px */
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 3px; /* Giảm từ 4px xuống 3px */
     cursor: pointer;
     -webkit-appearance: none;
     outline: none;
@@ -539,18 +539,18 @@ body {
 }
 
 #progress::-webkit-slider-runnable-track {
-    height: 8px;
+    height: 6px; /* Giảm từ 8px xuống 6px */
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 3px; /* Giảm từ 4px xuống 3px */
 }
 
 #progress::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 15px; /* Giảm từ 18px xuống 15px */
+    height: 15px; /* Giảm từ 18px xuống 15px */
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
     border-radius: 50%;
-    margin-top: -5px;
+    margin-top: -4.5px; /* Điều chỉnh từ -5px xuống -4.5px */
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease;
@@ -561,14 +561,14 @@ body {
 }
 
 #progress::-moz-range-track {
-    height: 8px;
+    height: 6px; /* Giảm từ 8px xuống 6px */
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 3px; /* Giảm từ 4px xuống 3px */
 }
 
 #progress::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
+    width: 15px; /* Giảm từ 18px xuống 15px */
+    height: 15px; /* Giảm từ 18px xuống 15px */
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
     border-radius: 50%;
     cursor: pointer;
@@ -602,17 +602,17 @@ body {
 
 #volumeSlider {
     flex: 1;
-    height: 6px;
+    height: 5px; /* Giảm từ 6px xuống 5px */
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
+    border-radius: 2.5px; /* Giảm từ 3px xuống 2.5px */
     outline: none;
     cursor: pointer;
     -webkit-appearance: none;
 }
 
 #volumeSlider::-webkit-slider-thumb {
-    width: 18px;
-    height: 18px;
+    width: 15px; /* Giảm từ 18px xuống 15px */
+    height: 15px; /* Giảm từ 18px xuống 15px */
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
     border-radius: 50%;
     cursor: pointer;
@@ -948,19 +948,19 @@ footer:hover {
     }
 
     .player-controls {
-        gap: 12px;
+        gap: 10px; /* Giảm từ 12px xuống 10px */
     }
 
     .player-controls button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
+        width: 35px; /* Giảm từ 40px xuống 35px */
+        height: 35px; /* Giảm từ 40px xuống 35px */
+        font-size: 0.95rem; /* Giảm từ 1.1rem xuống 0.95rem */
     }
 
     #playBtn {
-        width: 55px;
-        height: 55px;
-        font-size: 1.4rem;
+        width: 45px; /* Giảm từ 55px xuống 45px */
+        height: 45px; /* Giảm từ 55px xuống 45px */
+        font-size: 1.2rem; /* Giảm từ 1.4rem xuống 1.2rem */
     }
 }
 
@@ -972,7 +972,7 @@ footer:hover {
 
     .main-video {
         max-width: 320px;
-        height: 224px; /* Tăng từ 160px lên 224px */
+        height: 200px; /* Tăng từ 160px lên 224px */
     }
 
     .time-display {
@@ -991,9 +991,9 @@ footer:hover {
     }
 
     .player-controls button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
+        width: 32px; /* Giảm từ 40px xuống 32px */
+        height: 32px; /* Giảm từ 40px xuống 32px */
+        font-size: 0.9rem; /* Giảm từ 1.1rem xuống 0.9rem */
     }
 
     .error-message {
