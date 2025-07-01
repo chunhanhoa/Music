@@ -19,8 +19,79 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 25px; /* Giảm từ 30px xuống 25px */
     padding: 20px;
+}
+
+/* Logo Container */
+.logo-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px 30px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: logoGlow 4s ease-in-out infinite alternate;
+}
+
+.logo-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.website-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.website-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.website-title {
+    color: white;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: colorShift 4s ease-in-out infinite;
+    text-align: center;
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 107, 107, 0.2);
+    }
+    50% {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px rgba(78, 205, 196, 0.3);
+    }
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .background-overlay {
@@ -921,7 +992,7 @@ footer:hover {
 
 @media (max-width: 768px) {
     .container {
-        gap: 25px;
+        gap: 20px;
         padding: 15px;
     }
 
@@ -966,7 +1037,7 @@ footer:hover {
 
 @media (max-width: 480px) {
     .container {
-        gap: 20px;
+        gap: 15px; /* Giảm từ 20px xuống 15px */
         padding: 10px;
     }
 
@@ -1248,49 +1319,59 @@ footer:hover {
     background: linear-gradient(45deg, #ff5252, #3abab0);
 }
 
-/* Responsive cho playlist modal */
+/* Responsive cho logo */
 @media (max-width: 768px) {
-    .playlist-modal {
-        padding: 15px;
+    .container {
+        gap: 20px; /* Giảm từ 25px xuống 20px */
     }
-    
-    .playlist-content {
-        max-width: 100%;
-        padding: 20px;
-        max-height: 80vh;
+
+    .logo-container {
+        max-width: 350px;
+        padding: 18px 25px;
     }
-    
-    .playlist-item {
-        padding: 10px 12px;
-        gap: 12px;
+
+    .website-logo {
+        width: 70px;
+        height: 70px;
     }
-    
-    .playlist-info h4 {
-        font-size: 0.95rem;
-    }
-    
-    .playlist-info p {
-        font-size: 0.8rem;
+
+    .website-title {
+        font-size: 1.8rem;
     }
 }
 
 @media (max-width: 480px) {
-    .playlist-content {
-        padding: 18px;
-        border-radius: 15px;
+    .container {
+        gap: 15px; /* Giảm từ 20px xuống 15px */
     }
-    
-    .playlist-header h3 {
+
+    .logo-container {
+        max-width: 320px;
+        padding: 15px 20px;
+    }
+
+    .website-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .website-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .logo-container {
+        max-width: 280px;
+        padding: 12px 20px;
+    }
+
+    .website-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .website-title {
         font-size: 1.2rem;
-    }
-    
-    .playlist-item {
-        padding: 8px 10px;
-        gap: 10px;
-    }
-    
-    .playlist-number {
-        min-width: 20px;
-        font-size: 0.8rem;
     }
 }
