@@ -70,6 +70,12 @@ class LofiPlayer {
                 src: "audio/lofi7.mp3",
                 media: "images/lofi7.gif"
             },
+            {
+                title: "A Mysterious Japanese Songs",
+                artist: "White Girl [Chill Best Songs]", 
+                src: "audio/lofi8.mp3",
+                media: "images/lofi8.gif"
+            },
         ];
         
         // Danh sách media nền
