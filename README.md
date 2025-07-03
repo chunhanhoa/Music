@@ -68,7 +68,6 @@ this.playlist = [
     // ... thêm bài khác
 ];
 ```
-
 ## Cách sử dụng
 
 1. **Phát nhạc**: Click nút play hoặc nhấn Space

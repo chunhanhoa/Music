@@ -82,6 +82,12 @@ class LofiPlayer {
                 src: "audio/lofi9.mp3",
                 media: "images/lofi9.gif"
             },
+            {
+                title: "ADRENALINE",
+                artist: "CURSEDEVIL", 
+                src: "audio/lofi10.mp3",
+                media: "images/lofi10.gif"
+            },
             
         ];
         
