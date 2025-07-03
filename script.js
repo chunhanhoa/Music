@@ -76,6 +76,13 @@ class LofiPlayer {
                 src: "audio/lofi8.mp3",
                 media: "images/lofi8.gif"
             },
+            {
+                title: "Камин",
+                artist: "EMIN & JONY", 
+                src: "audio/lofi9.mp3",
+                media: "images/lofi9.gif"
+            },
+            
         ];
         
         // Danh sách media nền
