@@ -85,6 +85,12 @@ class LofiPlayer {
                 src: "audio/lofi10.mp3",
                 media: "images/lofi10.gif"
             },
+            {
+                title: "latina energy playlist",
+                artist: "𝓷𝓲𝓷𝓲 ๋࣭ ⭑୨୧", 
+                src: "audio/lofi11.mp3",
+                media: "images/lofi11.gif"
+            },
         ];
         
         // Fallback files
