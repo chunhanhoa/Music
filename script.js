@@ -87,7 +87,7 @@ class LofiPlayer {
             },
             {
                 title: "latina energy playlist",
-                artist: "𝓷𝓲𝓷𝓲 ๋࣭ ⭑୨୧", 
+                artist: "nini ୨୧", 
                 src: "audio/lofi11.mp3",
                 media: "images/lofi11.gif"
             },
