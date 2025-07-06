@@ -91,6 +91,12 @@ class LofiPlayer {
                 src: "audio/lofi11.mp3",
                 media: "images/lofi11.gif"
             },
+            {
+                title: "Brazilian Songs That Just Give You That Vibe",
+                artist: "-TheyEditz-", 
+                src: "audio/lofi12.mp3",
+                media: "images/lofi12.gif"
+            },
         ];
         
         // Fallback files
