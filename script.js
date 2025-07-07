@@ -32,16 +32,16 @@ class LofiPlayer {
                 media: "images/lofi1.mp4"
             },
             {
-                title: "Coffee Lofi",
-                artist: "Lofi Kitty",
-                src: "audio/lofi2.mp3",
-                media: "images/lofi2.mp4"
-            },
-            {
                 title: "Studio Ghibli Animation OST",
                 artist: "Studio Ghibli", 
                 src: "audio/lofi3.mp3",
                 media: "images/lofi3.mp4"
+            },
+            {
+                title: "Coffee Lofi",
+                artist: "Lofi Kitty",
+                src: "audio/lofi2.mp3",
+                media: "images/lofi2.mp4"
             },
             {
                 title: "Rainy Day Vibes", 
@@ -60,6 +60,12 @@ class LofiPlayer {
                 artist: "ich98", 
                 src: "audio/lofi6.mp3",
                 media: "images/lofi6.gif"
+            },
+            {
+                title: "Sơn Tùng MTP playlist",
+                artist: "ALL MUSIC", 
+                src: "audio/lofi14.mp3",
+                media: "images/lofi14.gif"
             },
             {
                 title: "Korean RnB",
