@@ -97,6 +97,12 @@ class LofiPlayer {
                 src: "audio/lofi12.mp3",
                 media: "images/lofi12.gif"
             },
+            {
+                title: "Ronboogz's playlist",
+                artist: "Qīng Hán", 
+                src: "audio/lofi13.mp3",
+                media: "images/lofi13.gif"
+            },
         ];
         
         // Fallback files
