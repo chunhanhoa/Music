@@ -56,16 +56,22 @@ class LofiPlayer {
                 media: "images/lofi5.mp4"
             },
             {
-                title: "Fairy Tail Emotional Music",
-                artist: "ich98", 
-                src: "audio/lofi6.mp3",
-                media: "images/lofi6.gif"
+                title: "you're a swiftie",
+                artist: "its.Hannah", 
+                src: "audio/lofi15.mp3",
+                media: "images/lofi15.gif"
             },
             {
                 title: "Sơn Tùng MTP playlist",
                 artist: "ALL MUSIC", 
                 src: "audio/lofi14.mp3",
                 media: "images/lofi14.gif"
+            },
+            {
+                title: "Fairy Tail Emotional Music",
+                artist: "ich98", 
+                src: "audio/lofi6.mp3",
+                media: "images/lofi6.gif"
             },
             {
                 title: "Korean RnB",
