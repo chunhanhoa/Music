@@ -115,6 +115,12 @@ class LofiPlayer {
                 src: "audio/lofi13.mp3",
                 media: "images/lofi13.gif"
             },
+            {
+                title: "you’re a character in shoujo manga/anime",
+                artist: "Bee with cigarette", 
+                src: "audio/lofi16.mp3",
+                media: "images/lofi16.gif"
+            },
         ];
         
         // Fallback files
