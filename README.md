@@ -4,7 +4,7 @@ Bạn có thể truy cập dự án tại đây nè :> [Music Playlis](https://c
 
 ## Giới thiệu
 
-Chào mừng bạn đến với **Music Playlist** – nơi âm nhạc tạo nên không gian nghe nhạc và thư giãn hoàn hảo! 🎵✨
+Chào mừng bạn đến với **Music Playlist** – nơi nghe nhạc và thư giãn nè.
 
 ## Mô tả
 
