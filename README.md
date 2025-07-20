@@ -30,44 +30,6 @@ Music Playlist là ứng dụng web tối giản với giao diện đẹp mắt,
 - **JavaScript ES6**: Class-based architecture, async/await, error handling
 - **Font Awesome**: Icon system cho giao diện
 
-## Hướng dẫn cài đặt
-
-### Sử dụng trực tiếp
-Truy cập [https://chunhanhoa.github.io/Music/](https://chunhanhoa.github.io/Music/) để sử dụng ngay!
-
-### Cài đặt local
-
-1. **Clone repository:**
-   ```bash
-   git clone https://github.com/Chunhanhoa/Music.git
-   cd Music
-   ```
-
-2. **Thêm file media:**
-   - Tạo thư mục `audio/` và thêm file .mp3
-   - Tạo thư mục `images/` và thêm file .mp4/.gif cho video nền
-   - Đặt file logo với tên `logo.png` trong thư mục `images/`
-   - Đảm bảo tên file khớp với danh sách trong `script.js`
-
-3. **Chạy ứng dụng:**
-   - Mở `index.html` bằng trình duyệt
-   - Hoặc sử dụng Live Server cho development
-
-## Tùy chỉnh
-
-### Thêm bài hát mới vào playlist
-Chỉnh sửa mảng `playlist` trong `script.js`:
-```javascript
-this.playlist = [
-    {
-        title: "Tên bài hát",
-        artist: "Tên nghệ sĩ", 
-        src: "audio/file.mp3",
-        media: "images/video.mp4" // hoặc .gif
-    }
-    // ... thêm bài khác
-];
-```
 ## Cách sử dụng
 
 1. **Phát nhạc**: Click nút play hoặc nhấn Space
