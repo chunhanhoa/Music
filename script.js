@@ -38,6 +38,12 @@ class LofiPlayer {
                 media: "images/lofi3.mp4"
             },
             {
+                title: "The Best Of Ed Sheeran",
+                artist: "Ed Sheeran", 
+                src: "audio/lofi17.mp3",
+                media: "images/lofi17.gif"
+            },
+            {
                 title: "Coffee Lofi",
                 artist: "Lofi Kitty",
                 src: "audio/lofi2.mp3",
