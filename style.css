@@ -4,9 +4,8 @@
     box-sizing: border-box;
 }
 
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     height: 100vh;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -20,79 +19,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 25px; /* Giảm từ 30px xuống 25px */
+    gap: 20px;
     padding: 20px;
-}
-
-/* Logo Container */
-.logo-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 20px 30px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: logoGlow 4s ease-in-out infinite alternate;
-}
-
-.logo-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.website-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    animation: logoFloat 3s ease-in-out infinite;
-}
-
-.website-logo:hover {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.website-title {
-    color: white;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: colorShift 4s ease-in-out infinite;
-    text-align: center;
-}
-
-@keyframes logoGlow {
-    0%, 100% {
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 107, 107, 0.2);
-    }
-    50% {
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px rgba(78, 205, 196, 0.3);
-    }
-}
-
-@keyframes logoFloat {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
 }
 
 .background-overlay {
@@ -101,53 +29,49 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
     z-index: 1;
 }
 
-.main-video {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 400px;
-    height: 280px; /* Tăng từ 200px lên 280px */
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.main-video video,
-.main-video img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
+/* ============================================
+   TIME DISPLAY - Hiển thị thời gian
+   ============================================ */
 .time-display {
     position: relative;
     z-index: 2;
     text-align: center;
     color: white;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 25px 40px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border-radius: 24px;
+    padding: 28px 40px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    max-width: 420px;
     width: 100%;
     animation: timeGlow 3s ease-in-out infinite alternate;
     overflow: hidden;
 }
 
+@keyframes timeGlow {
+    0% {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                    0 0 30px rgba(255, 107, 107, 0.15);
+    }
+    100% {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                    0 0 40px rgba(78, 205, 196, 0.2);
+    }
+}
+
 /* Bunny Container */
 .bunny-container {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
+    top: 12px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
     z-index: 10;
 }
 
@@ -157,7 +81,7 @@ body {
     position: relative;
     animation: bunnyFloat 3s ease-in-out infinite, bunnyMove 8s linear infinite;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bunny:hover {
@@ -166,12 +90,13 @@ body {
 }
 
 .bunny-body {
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
     border-radius: 50%;
     position: relative;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 
+                inset 0 2px 3px rgba(255, 255, 255, 0.9);
 }
 
 /* Tai thỏ */
@@ -180,17 +105,17 @@ body {
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 16px;
+    width: 22px;
+    height: 18px;
 }
 
 .ear {
     position: absolute;
-    width: 6px;
-    height: 14px;
+    width: 7px;
+    height: 15px;
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    border-radius: 6px 6px 0 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     animation: earWiggle 2s ease-in-out infinite;
 }
 
@@ -201,7 +126,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 3px;
-    height: 10px;
+    height: 11px;
     background: linear-gradient(145deg, #ffb3ba, #ffc4d0);
     border-radius: 3px 3px 0 0;
 }
@@ -228,44 +153,44 @@ body {
 
 .eye {
     position: absolute;
-    width: 3px;
-    height: 3px;
+    width: 3.5px;
+    height: 3.5px;
     background: #333;
     border-radius: 50%;
-    top: 6px;
+    top: 7px;
     animation: blink 3s infinite;
 }
 
 .left-eye {
-    left: 6px;
+    left: 7px;
 }
 
 .right-eye {
-    right: 6px;
+    right: 7px;
 }
 
 .nose {
     position: absolute;
-    top: 9px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 2px;
-    height: 1.5px;
+    width: 2.5px;
+    height: 2px;
     background: #ff9999;
     border-radius: 50%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .mouth {
     position: absolute;
-    top: 12px;
+    top: 13px;
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    height: 2px;
+    width: 5px;
+    height: 2.5px;
     border: 0.5px solid #ccc;
     border-top: none;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 5px 5px;
 }
 
 .mouth::before {
@@ -275,17 +200,17 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 0.5px;
-    height: 2px;
+    height: 2.5px;
     background: #ccc;
 }
 
 .cheek {
     position: absolute;
-    width: 4px;
-    height: 3px;
-    background: rgba(255, 182, 193, 0.6);
+    width: 5px;
+    height: 3.5px;
+    background: rgba(255, 182, 193, 0.65);
     border-radius: 50%;
-    top: 10px;
+    top: 11px;
     animation: cheekGlow 2s ease-in-out infinite alternate;
 }
 
@@ -302,30 +227,30 @@ body {
     position: absolute;
     bottom: -6px;
     right: -4px;
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
     border-radius: 50%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     animation: tailWag 1.5s ease-in-out infinite;
 }
 
 /* Speech Bubble */
 .speech-bubble {
     position: absolute;
-    bottom: 50px;
-    right: -10px;
-    background: rgba(255, 255, 255, 0.95);
+    bottom: 52px;
+    right: -12px;
+    background: rgba(255, 255, 255, 0.96);
     color: #333;
-    padding: 8px 12px;
-    border-radius: 15px;
+    padding: 9px 14px;
+    border-radius: 16px;
     font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     opacity: 0;
     transform: translateY(10px) scale(0.8);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 20;
     border: 2px solid #ff9999;
     animation: bubbleAppear 0.5s ease-out forwards;
@@ -335,7 +260,7 @@ body {
     content: '';
     position: absolute;
     top: 100%;
-    right: 20px;
+    right: 22px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
@@ -347,12 +272,12 @@ body {
     content: '';
     position: absolute;
     top: 100%;
-    right: 21px;
+    right: 23px;
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid rgba(255, 255, 255, 0.95);
+    border-top: 6px solid rgba(255, 255, 255, 0.96);
 }
 
 .speech-bubble.show {
@@ -366,112 +291,37 @@ body {
         transform: translateY(0px) rotate(0deg);
     }
     50% {
-        transform: translateY(-3px) rotate(1deg);
+        transform: translateY(-4px) rotate(2deg);
     }
 }
 
 @keyframes bunnyMove {
-    0% {
-        transform: translateX(0px);
-    }
-    25% {
-        transform: translateX(8px);
-    }
-    50% {
-        transform: translateX(4px);
-    }
-    75% {
-        transform: translateX(-4px);
-    }
-    100% {
-        transform: translateX(0px);
-    }
-}
-
-@keyframes bunnyJump {
-    0% { transform: translateY(0px) scale(1); }
-    30% { transform: translateY(-15px) scale(1.1); }
-    60% { transform: translateY(-8px) scale(1.05); }
-    100% { transform: translateY(0px) scale(1); }
-}
-
-@keyframes bunnyWink {
-    0%, 80%, 100% { transform: scaleY(1); }
-    90% { transform: scaleY(0.1); }
-}
-
-@keyframes bunnyBounce {
-    0%, 100% { transform: translateY(0px) scale(1, 1); }
-    50% { transform: translateY(-10px) scale(1.1, 0.9); }
-}
-
-@keyframes bunnyTwirl {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes bunnyShake {
-    0%, 100% { transform: translateX(0px); }
-    25% { transform: translateX(-2px); }
-    75% { transform: translateX(2px); }
-}
-
-@keyframes bunnyHeart {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-@keyframes bunnyShy {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-@keyframes bunnyExcited {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-5px) rotate(-5deg); }
-    50% { transform: translateY(-8px) rotate(0deg); }
-    75% { transform: translateY(-5px) rotate(5deg); }
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(10px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0px); }
 }
 
 @keyframes earWiggle {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(8deg);
-    }
-    75% {
-        transform: rotate(-8deg);
-    }
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
 }
 
 @keyframes blink {
-    0%, 90%, 100% {
-        transform: scaleY(1);
-    }
-    95% {
-        transform: scaleY(0.1);
-    }
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
 }
 
 @keyframes tailWag {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(20deg);
-    }
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(25deg); }
 }
 
 @keyframes cheekGlow {
-    0% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 0.8;
-    }
+    0% { opacity: 0.5; }
+    100% { opacity: 0.85; }
 }
 
 @keyframes bubbleAppear {
@@ -486,292 +336,369 @@ body {
 }
 
 .current-time {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-size: clamp(2.8rem, 9vw, 4.5rem);
     font-weight: 300;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
+    background: linear-gradient(120deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: colorShift 4s ease-in-out infinite;
+    animation: colorShift 6s ease-in-out infinite;
 }
 
 @keyframes colorShift {
-    0%, 100% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(90deg); }
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .current-date {
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
-    opacity: 0.9;
-    font-weight: 300;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+    opacity: 0.92;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
+/* ============================================
+   MAIN VIDEO - Video/Image nền
+   ============================================ */
+.main-video {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 420px;
+    height: 300px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.main-video:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+.main-video video,
+.main-video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.main-video.changing {
+    opacity: 0.4;
+    transform: scale(0.96);
+}
+
+/* ============================================
+   MUSIC PLAYER - Trình phát nhạc
+   ============================================ */
 .music-player {
     position: relative;
     z-index: 2;
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(25px);
-    padding: 25px 30px;
-    border-radius: 25px;
-    max-width: 400px;
+    backdrop-filter: blur(30px);
+    padding: 28px 32px;
+    border-radius: 28px;
+    max-width: 420px;
     width: 100%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), 
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .music-player:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), 
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 .song-info {
     text-align: center;
     color: white;
-    margin-bottom: 20px;
-    padding: 10px 0;
+    margin-bottom: 22px;
+    padding: 12px 0;
+    transition: all 0.4s ease;
+}
+
+.song-info.changing {
+    opacity: 0.5;
+    transform: translateY(-10px);
 }
 
 .song-info h3 {
-    font-size: clamp(1.2rem, 4vw, 1.4rem);
-    margin-bottom: 6px;
-    font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-size: clamp(1.25rem, 4.2vw, 1.5rem);
+    margin-bottom: 7px;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    letter-spacing: -0.01em;
 }
 
 .song-info p {
-    opacity: 0.8;
-    font-size: clamp(0.85rem, 3vw, 1rem);
-    font-weight: 300;
+    opacity: 0.85;
+    font-size: clamp(0.9rem, 3.2vw, 1.05rem);
+    font-weight: 400;
 }
 
+/* ============================================
+   PLAYER CONTROLS - Nút điều khiển
+   ============================================ */
 .player-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Giảm từ 20px xuống 15px */
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 24px;
 }
 
 .player-controls button {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.22);
     border: none;
     color: white;
-    font-size: 1rem; /* Giảm từ 1.2rem xuống 1rem */
+    font-size: 1.1rem;
     cursor: pointer;
-    padding: 8px; /* Giảm từ 10px xuống 8px */
+    padding: 10px;
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 38px; /* Giảm từ 45px xuống 38px */
-    height: 38px; /* Giảm từ 45px xuống 38px */
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .player-controls button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.32);
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.player-controls button:active {
+    transform: scale(1.05);
 }
 
 #playBtn {
-    background: linear-gradient(45deg, #ff6b6b, #ff5252);
-    padding: 12px; /* Giảm từ 15px xuống 12px */
-    font-size: 1.3rem; /* Giảm từ 1.5rem xuống 1.3rem */
-    width: 50px; /* Giảm từ 60px xuống 50px */
-    height: 50px; /* Giảm từ 60px xuống 50px */
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    padding: 14px;
+    font-size: 1.4rem;
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.45);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
 }
 
 #playBtn:hover {
-    background: linear-gradient(45deg, #ff5252, #ff4444);
-    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.6);
+    background: linear-gradient(135deg, #ff5252, #ff4444);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6);
+    transform: scale(1.12) translateY(-3px);
 }
 
+#playBtn:active {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   PROGRESS BAR - Thanh tiến trình
+   ============================================ */
 .progress-container {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 #progress {
     width: 100%;
-    height: 6px; /* Giảm từ 8px xuống 6px */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px; /* Giảm từ 4px xuống 3px */
+    height: 7px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 4px;
     cursor: pointer;
     -webkit-appearance: none;
     outline: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+}
+
+#progress:hover {
+    background: rgba(255, 255, 255, 0.28);
 }
 
 #progress::-webkit-slider-runnable-track {
-    height: 6px; /* Giảm từ 8px xuống 6px */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px; /* Giảm từ 4px xuống 3px */
+    height: 7px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 4px;
 }
 
 #progress::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 15px; /* Giảm từ 18px xuống 15px */
-    height: 15px; /* Giảm từ 18px xuống 15px */
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    width: 17px;
+    height: 17px;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
     border-radius: 50%;
-    margin-top: -4.5px; /* Điều chỉnh từ -5px xuống -4.5px */
+    margin-top: -5px;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 #progress::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 #progress::-moz-range-track {
-    height: 6px; /* Giảm từ 8px xuống 6px */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px; /* Giảm từ 4px xuống 3px */
+    height: 7px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 4px;
 }
 
 #progress::-moz-range-thumb {
-    width: 15px; /* Giảm từ 18px xuống 15px */
-    height: 15px; /* Giảm từ 18px xuống 15px */
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    width: 17px;
+    height: 17px;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    border: none;
 }
 
 #progress::-moz-range-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
 }
 
 .time-info {
     display: flex;
     justify-content: space-between;
     color: white;
-    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-    opacity: 0.9;
-    font-weight: 300;
+    font-size: clamp(0.85rem, 2.7vw, 0.95rem);
+    opacity: 0.92;
+    font-weight: 400;
+    margin-top: 8px;
 }
 
+/* ============================================
+   VOLUME CONTROL - Điều khiển âm lượng
+   ============================================ */
 .volume-control {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 16px;
     color: white;
 }
 
 .volume-control i {
-    font-size: clamp(1.1rem, 3vw, 1.3rem);
-    opacity: 0.8;
+    font-size: clamp(1.15rem, 3.2vw, 1.35rem);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.volume-control i:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 #volumeSlider {
     flex: 1;
-    height: 5px; /* Giảm từ 6px xuống 5px */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2.5px; /* Giảm từ 3px xuống 2.5px */
+    height: 6px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 3px;
     outline: none;
     cursor: pointer;
     -webkit-appearance: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #volumeSlider::-webkit-slider-thumb {
-    width: 15px; /* Giảm từ 18px xuống 15px */
-    height: 15px; /* Giảm từ 18px xuống 15px */
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
     border-radius: 50%;
     cursor: pointer;
     -webkit-appearance: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 #volumeSlider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
 }
 
-.error-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(229, 62, 62, 0.9);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    z-index: 1000;
-    font-size: 14px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: slideInRight 0.3s ease;
+#volumeSlider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35);
+    border: none;
 }
 
-@keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
+/* ============================================
+   FOOTER
+   ============================================ */
 footer {
     position: relative;
     z-index: 2;
     text-align: center;
     color: white;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 15px;
-    padding: 15px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    padding: 18px 24px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    max-width: 420px;
     width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 footer:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
 .footer-content p {
-    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-    font-weight: 300;
-    opacity: 0.9;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    margin-bottom: 8px;
+    font-size: clamp(0.85rem, 2.7vw, 0.95rem);
+    font-weight: 400;
+    opacity: 0.92;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    margin: 0;
 }
 
 .footer-content a {
     color: #ff6b6b;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .footer-content a:hover {
-    color: #ff4444;
+    color: #ff5252;
     text-decoration: underline;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
 }
 
-/* Playlist Modal Styles */
+/* ============================================
+   PLAYLIST MODAL
+   ============================================ */
 .playlist-modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -788,18 +715,19 @@ footer:hover {
 }
 
 .playlist-content {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-    backdrop-filter: blur(25px);
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 25px;
-    max-width: 500px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+    backdrop-filter: blur(30px);
+    border-radius: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    padding: 28px;
+    max-width: 520px;
     width: 100%;
-    max-height: 70vh;
+    max-height: 75vh;
     color: white;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    transform: scale(0.8) translateY(30px);
-    transition: transform 0.3s ease;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transform: scale(0.85) translateY(30px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .playlist-modal.show .playlist-content {
@@ -810,87 +738,100 @@ footer:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
 }
 
 .playlist-header h3 {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: #ff6b6b;
+    text-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
 }
 
 .close-playlist {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
+    background: rgba(255, 255, 255, 0.22);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
     color: white;
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1.1rem;
 }
 
 .close-playlist:hover {
-    background: rgba(255, 107, 107, 0.3);
-    transform: scale(1.1);
+    background: rgba(255, 107, 107, 0.35);
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }
 
 .playlist-list {
-    max-height: 400px;
+    max-height: 420px;
     overflow-y: auto;
-    padding-right: 10px;
+    padding-right: 12px;
 }
 
 .playlist-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 12px 15px;
-    margin-bottom: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    gap: 16px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
     position: relative;
     overflow: hidden;
 }
 
-.playlist-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.playlist-item.active {
-    background: linear-gradient(45deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3));
-    border-color: rgba(255, 107, 107, 0.5);
-    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
-}
-
-.playlist-item.active::before {
+.playlist-item::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 3px;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    width: 0;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    transition: width 0.3s ease;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.playlist-item:hover::before {
+    width: 4px;
+}
+
+.playlist-item.active {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.35), rgba(78, 205, 196, 0.35));
+    border-color: rgba(255, 107, 107, 0.5);
+    box-shadow: 0 6px 22px rgba(255, 107, 107, 0.45);
+}
+
+.playlist-item.active::before {
+    width: 4px;
 }
 
 .playlist-number {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: #4ecdc4;
-    min-width: 25px;
+    min-width: 28px;
     text-align: center;
 }
 
@@ -904,8 +845,8 @@ footer:hover {
 }
 
 .playlist-info h4 {
-    margin: 0 0 3px 0;
-    font-size: 1rem;
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -914,17 +855,17 @@ footer:hover {
 
 .playlist-info p {
     margin: 0;
-    font-size: 0.85rem;
-    opacity: 0.7;
+    font-size: 0.88rem;
+    opacity: 0.75;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .playlist-duration {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #4ecdc4;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .playlist-item.active .playlist-duration {
@@ -933,7 +874,7 @@ footer:hover {
 
 .now-playing-icon {
     color: #ff6b6b;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -942,97 +883,129 @@ footer:hover {
     50% { opacity: 0.5; }
 }
 
-/* Smooth transition effects */
-.main-video {
-    transition: all 0.5s ease;
-}
-
-.main-video.changing {
-    opacity: 0.3;
-    transform: scale(0.95);
-}
-
-.song-info {
-    transition: all 0.4s ease;
-}
-
-.song-info.changing {
-    opacity: 0.5;
-    transform: translateY(-10px);
-}
-
 /* Custom scrollbar for playlist */
 .playlist-list::-webkit-scrollbar {
-    width: 6px;
+    width: 7px;
 }
 
 .playlist-list::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
 }
 
 .playlist-list::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    border-radius: 3px;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    border-radius: 4px;
 }
 
 .playlist-list::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #ff5252, #3abab0);
+    background: linear-gradient(135deg, #ff5252, #3abab0);
 }
 
-/* Responsive cho logo */
+/* ============================================
+   ERROR MESSAGE
+   ============================================ */
+.error-message {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: rgba(229, 62, 62, 0.92);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    z-index: 10000;
+    font-size: 14px;
+    backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    animation: slideInRight 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 768px) {
     .container {
-        gap: 20px; /* Giảm từ 25px xuống 20px */
+        gap: 18px;
+        padding: 16px;
     }
 
-    .logo-container {
-        max-width: 350px;
-        padding: 18px 25px;
+    .time-display,
+    .main-video,
+    .music-player,
+    footer {
+        max-width: 380px;
     }
 
-    .website-logo {
-        width: 70px;
-        height: 70px;
-    }
-
-    .website-title {
-        font-size: 1.8rem;
+    .main-video {
+        height: 260px;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        gap: 15px; /* Giảm từ 20px xuống 15px */
+        gap: 14px;
+        padding: 12px;
     }
 
-    .logo-container {
-        max-width: 320px;
-        padding: 15px 20px;
+    .time-display,
+    .main-video,
+    .music-player,
+    footer {
+        max-width: 340px;
     }
 
-    .website-logo {
-        width: 60px;
-        height: 60px;
+    .main-video {
+        height: 220px;
     }
 
-    .website-title {
-        font-size: 1.5rem;
+    .music-player {
+        padding: 22px 26px;
+    }
+
+    .player-controls {
+        gap: 14px;
+    }
+
+    .player-controls button {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    #playBtn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
     }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-    .logo-container {
-        max-width: 280px;
-        padding: 12px 20px;
+    .container {
+        gap: 12px;
+        padding: 10px;
     }
 
-    .website-logo {
-        width: 50px;
-        height: 50px;
+    .main-video {
+        height: 180px;
     }
 
-    .website-title {
-        font-size: 1.2rem;
+    .time-display {
+        padding: 20px 30px;
+    }
+
+    .music-player {
+        padding: 20px 24px;
     }
 }
