@@ -28,104 +28,104 @@ class LofiPlayer {
             {
                 title: "You are falling in love",
                 artist: "Love & Chill Vibes", 
-                src: "audio/lofi1.mp3",
-                media: "images/lofi1.mp4"
+                src: "assets/audio/lofi1.mp3",
+                media: "assets/images/lofi1.mp4"
             },
             {
                 title: "Studio Ghibli Animation OST",
                 artist: "Studio Ghibli", 
-                src: "audio/lofi3.mp3",
-                media: "images/lofi3.mp4"
+                src: "assets/audio/lofi3.mp3",
+                media: "assets/images/lofi3.mp4"
             },
             {
                 title: "The Best Of Ed Sheeran",
                 artist: "Ed Sheeran", 
-                src: "audio/lofi17.mp3",
-                media: "images/lofi17.gif"
+                src: "assets/audio/lofi17.mp3",
+                media: "assets/images/lofi17.gif"
             },
             {
                 title: "Coffee Lofi",
                 artist: "Lofi Kitty",
-                src: "audio/lofi2.mp3",
-                media: "images/lofi2.mp4"
+                src: "assets/audio/lofi2.mp3",
+                media: "assets/images/lofi2.mp4"
             },
             {
                 title: "Rainy Day Vibes", 
                 artist: "Study Music",
-                src: "audio/lofi4.mp3",
-                media: "images/lofi4.mp4"
+                src: "assets/audio/lofi4.mp3",
+                media: "assets/images/lofi4.mp4"
             },
             {
                 title: "Fantasy Bard/Tavern Music",
                 artist: "Celestial Draconis", 
-                src: "audio/lofi5.mp3",
-                media: "images/lofi5.mp4"
+                src: "assets/audio/lofi5.mp3",
+                media: "assets/images/lofi5.mp4"
             },
             {
                 title: "you're a swiftie",
                 artist: "its.Hannah", 
-                src: "audio/lofi15.mp3",
-                media: "images/lofi15.gif"
+                src: "assets/audio/lofi15.mp3",
+                media: "assets/images/lofi15.gif"
             },
             {
                 title: "Sơn Tùng MTP playlist",
                 artist: "ALL MUSIC", 
-                src: "audio/lofi14.mp3",
-                media: "images/lofi14.gif"
+                src: "assets/audio/lofi14.mp3",
+                media: "assets/images/lofi14.gif"
             },
             {
                 title: "Fairy Tail Emotional Music",
                 artist: "ich98", 
-                src: "audio/lofi6.mp3",
-                media: "images/lofi6.gif"
+                src: "assets/audio/lofi6.mp3",
+                media: "assets/images/lofi6.gif"
             },
             {
                 title: "Korean RnB",
                 artist: "Seoul Flow AI", 
-                src: "audio/lofi7.mp3",
-                media: "images/lofi7.gif"
+                src: "assets/audio/lofi7.mp3",
+                media: "assets/images/lofi7.gif"
             },
             {
                 title: "A Mysterious Japanese Songs",
                 artist: "White Girl [Chill Best Songs]", 
-                src: "audio/lofi8.mp3",
-                media: "images/lofi8.gif"
+                src: "assets/audio/lofi8.mp3",
+                media: "assets/images/lofi8.gif"
             },
             {
                 title: "Камин",
                 artist: "EMIN & JONY", 
-                src: "audio/lofi9.mp3",
-                media: "images/lofi9.gif"
+                src: "assets/audio/lofi9.mp3",
+                media: "assets/images/lofi9.gif"
             },
             {
                 title: "ADRENALINE",
                 artist: "CURSEDEVIL", 
-                src: "audio/lofi10.mp3",
-                media: "images/lofi10.gif"
+                src: "assets/audio/lofi10.mp3",
+                media: "assets/images/lofi10.gif"
             },
             {
                 title: "latina energy playlist",
                 artist: "nini ୨୧", 
-                src: "audio/lofi11.mp3",
-                media: "images/lofi11.gif"
+                src: "assets/audio/lofi11.mp3",
+                media: "assets/images/lofi11.gif"
             },
             {
                 title: "Brazilian Songs That Just Give You That Vibe",
                 artist: "-TheyEditz-", 
-                src: "audio/lofi12.mp3",
-                media: "images/lofi12.gif"
+                src: "assets/audio/lofi12.mp3",
+                media: "assets/images/lofi12.gif"
             },
             {
                 title: "Ronboogz's playlist",
                 artist: "Qīng Hán", 
-                src: "audio/lofi13.mp3",
-                media: "images/lofi13.gif"
+                src: "assets/audio/lofi13.mp3",
+                media: "assets/images/lofi13.gif"
             },
             {
                 title: "you’re a character in shoujo manga/anime",
                 artist: "Bee with cigarette", 
-                src: "audio/lofi16.mp3",
-                media: "images/lofi16.gif"
+                src: "assets/audio/lofi16.mp3",
+                media: "assets/images/lofi16.gif"
             },
         ];
         
@@ -415,7 +415,7 @@ class LofiPlayer {
         this.currentSongIndex = 0;
         this.songTitle.textContent = "Không tìm thấy file nhạc";
         this.songArtist.textContent = "Hãy kiểm tra thư mục audio/";
-        this.showError("Không tìm thấy file nhạc. Hãy thêm file .mp3 vào thư mục audio/");
+        this.showError("Không tìm thấy file nhạc. Hãy thêm file .mp3 vào thư mục assets/audio/");
     }
     
     handleMediaError() {
