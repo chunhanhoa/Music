@@ -83,4 +83,7 @@ Music Playlist là ứng dụng web tối giản với giao diện đẹp mắt,
 
 ## Lời cảm ơn
 
-Cảm ơn bạn đã quan tâm đến dự án playlist nhạc này! Nếu thấy hữu ích, đừng quên chia sẻ với bạn bè để cùng nhau tận hưởng những giai điệu tuyệt vời nhé! 🎶
+Cảm ơn bạn đã quan tâm đến dự án playlist nhạc này! Nếu thấy hữu ích, đừng quên chia sẻ với bạn bè để cùng nhau tận hưởng những giai điệu tuyệt vời nhé! 
+
+### Tác giả
+Chu Nhân Hòa
